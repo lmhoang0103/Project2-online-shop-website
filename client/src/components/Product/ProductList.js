@@ -1,30 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Product from "./Product";
-import "./ProductList.css";
+import { connect } from "react-redux";
+import Paginaiton from "../Pagination/Pagination";
+import { fetchProductList } from "../../react-redux/actions/productActions";
+import { Products } from "../../data/Products";
+import * as selectors from "../../react-redux/selectors";
 
-const ProductList = () => {
-  const Products = [
-    { id: 1, name: "Shoe_01" },
-    { id: 2, name: "Shoe_02" },
-    { id: 3, name: "Shoe_03" },
-    { id: 4, name: "Shoe_04" },
-    { id: 5, name: "Shoe_05" },
-    { id: 6, name: "Shoe_06" },
-    { id: 7, name: "Shoe_07" },
-    { id: 9, name: "Shoe_08" },
-    { id: 10, name: "Shoe_08" },
-    { id: 11, name: "Shoe_08" },
-  ];
+const ProductList = (props) => {
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 12,
+    totalRows: 21,
+  });
+  // props.productItemList
+  const productItemList = props.productItemList || Products;
+  const { fetchProductList } = props;
+  // const containerStyle = {
+  //   margin
+  // }
+
+  useEffect(() => {
+    fetchProductList(pagination);
+  }, [pagination]);
+
+  const handlePageChanged = (newPage) => {
+    if (pagination.page !== newPage) {
+      setPagination({ ...pagination, page: Number(newPage) });
+      console.log("New page:", newPage);
+    } else {
+      console.log("Nochange");
+    }
+  };
 
   return (
-    <div className="grid">
-    <div className="row">
-      {Products.map((item) => (
-        <Product key={item.id} id={item.id} name={item.name} />
-      ))}
-    </div>
+    <div style={{ margin: "6rem 5rem" }}>
+      <div className="grid">
+        <div className="row body">
+          {productItemList.map((item) => (
+            <Product key={item._id} product={item} />
+          ))}
+        </div>
+      </div>
+      <Paginaiton pagination={pagination} onPageChanged={handlePageChanged} />
     </div>
   );
 };
 
-export default ProductList;
+const mapStateToProps = (state) => {
+  const dataSource = selectors.productSelector(state).productList;
+  console.log(dataSource);
+  const searchText = state.filters.searchText.toLowerCase();
+
+  const productItemList = dataSource.filter((product) => {
+    return product.productName.toLowerCase().includes(searchText);
+  });
+
+  return { productItemList: productItemList };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  // console.log("ok");
+  return {
+    fetchProductList: (data) => dispatch(fetchProductList(data)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
