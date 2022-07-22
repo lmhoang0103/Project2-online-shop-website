@@ -46,13 +46,13 @@ const Footer = () => {
               Le Minh Hoang
             </a>
             <a className={cx("FooterLink")} href="#">
-              Nguyen Tung Lam
+              Hoang Minh Le
             </a>
             <a className={cx("FooterLink")} href="#">
-              Trieu Quang Manh
+              Minh Hoang Le
             </a>
             <a className={cx("FooterLink")} href="#">
-              Pham Tran Minh Hieu
+              Hoang Le Minh
             </a>
           </div>
           <div className={cx("Column")}>
@@ -63,14 +63,23 @@ const Footer = () => {
             >
               Facebook
             </a>
-            <a className={cx("FooterLink")} href="#">
+            <a
+              className={cx("FooterLink")}
+              href="https://twitter.com/HongL55138154"
+            >
               Twitter
             </a>
-            <a className={cx("FooterLink")} href="#">
+            <a
+              className={cx("FooterLink")}
+              href="https://studio.youtube.com/channel/UCr_Vi2v8q9wcDRveL1OFbqA/playlists"
+            >
               Youtube
             </a>
-            <a className={cx("FooterLink")} href="#">
-              Instagram
+            <a
+              className={cx("FooterLink")}
+              href="https://github.com/lmhoang0103"
+            >
+              GitHub
             </a>
           </div>
         </div>
