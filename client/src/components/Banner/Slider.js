@@ -13,12 +13,12 @@ const Slider = () => {
 
   const nextSlide = () => {
     setSlideIndex(slideIndex === slideLength ? 1 : slideIndex + 1);
-    console.log("next");
+    //console.log("next");
   };
 
   const prevSlide = () => {
     setSlideIndex(slideIndex === 1 ? slideLength : slideIndex - 1);
-    console.log("prev");
+    //console.log("prev");
   };
 
   const moveDot = (index) => {
