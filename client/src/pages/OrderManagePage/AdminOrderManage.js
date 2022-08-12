@@ -60,7 +60,7 @@ const OrderList = () => {
           <div style={{ width: "20%" }}>Trạng thái đơn hàng</div>
           <div style={{ width: "14%" }}>Đơn giá</div>
           <div style={{ width: "5%" }}>Xóa</div>
-          <div style={{ width: "5%" }}>Chi tiết</div>
+          <div style={{ width: "5%" }}>Xem</div>
         </div>
         <div className="cart-body ">
           {orders?.map((order) => (
