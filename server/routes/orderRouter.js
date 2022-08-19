@@ -17,7 +17,7 @@ const getAllOrders = asyncHandler(async (req, res, next) => {
   }
 });
 
-const getOneOrder = async (req, res, next) => {
+const getOneOrder = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const query = Order.findById(id);
   const doc = await query;
@@ -25,9 +25,9 @@ const getOneOrder = async (req, res, next) => {
     res.status(404).json({ status: "fail", message: "No documents found" });
 
   res.status(200).json(doc);
-};
+});
 
-const createOrder = async (req, res, next) => {
+const createOrder = asyncHandler(async (req, res, next) => {
   // console.log("test here");
   // console.log(req.body.products);
   try {
@@ -47,9 +47,9 @@ const createOrder = async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
-};
+});
 
-const updateOrder = async (req, res, next) => {
+const updateOrder = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const doc = await Order.findByIdAndUpdate(id, req.body, {
     new: true,
@@ -58,9 +58,9 @@ const updateOrder = async (req, res, next) => {
     res.status(404).json({ status: "fail", message: "No documents found" });
 
   res.status(200).json(doc);
-};
+});
 
-const deleteOrder = async (req, res, next) => {
+const deleteOrder = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
   const doc = await Order.findByIdAndDelete(id);
   // if (!doc) return next(new Error('No documents found'))
@@ -71,7 +71,7 @@ const deleteOrder = async (req, res, next) => {
       data: doc,
     },
   });
-};
+});
 
 const router = express.Router();
 

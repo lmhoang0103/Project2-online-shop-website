@@ -70,7 +70,7 @@ function PageManage(props) {
         <th className={cx("title__contents")}>Ảnh</th>
         <th className={cx("title__contents")}>Description</th>
         <th className={cx("title__contents")}>Price</th>
-        <th className={cx("title__contents")}>Thêm</th>
+        <th className={cx("title__contents")}>Xóa</th>
       </tr>
     );
     return (
